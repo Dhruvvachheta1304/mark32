@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int hobbyIndex = 0;
 
   int hobbyItemIndex = 0;
-  List<List<bool>> isSelected = [];
+  List<List<bool>> selected = [];
 
   int hobbyCount = 0;
 
@@ -77,10 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Container(
           color: AppColors.white,
-          child: BlocConsumer<AllHobbiesBloc, AllHobbiesState>(
+          child: BlocConsumer<AllHobbiesBloc, HobbiesState>(
             listener: (context, state) {
               if (state is HobbyListingState && state.status == Status.loaded) {
-                isSelected = List.generate(state.listHobbies?.length ?? 0, (index) => List.generate(20, (index) => false));
+                selected = List.generate(state.listHobbies?.length ?? 0, (index) => List.generate(20, (index) => false));
               }
             },
             builder: (context, state) {
@@ -119,8 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Icon(
                                 index == hobbyIndex ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded,
-
-                                color: const Color(0xff14152B), // size: 14,
+                                color: const Color(0xff14152B),
                               ),
                             ),
                             key: Key(index.toString()),
@@ -134,8 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     const TextStyle(color: AppColors.tileTitleColor, fontSize: 16, fontWeight: FontWeight.w600),
                               ),
                             ),
-                            onExpansionChanged: ((newState) {
-                              if (newState) {
+                            onExpansionChanged: ((state) {
+                              if (state) {
                                 setState(() {
                                   hobbyIndex = index;
                                 });
@@ -162,12 +161,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
                                       onTap: () {
-                                        int count = isSelected[hobbyIndex].where((element) => element).length;
+                                        int count = selected[hobbyIndex].where((element) => element).length;
                                         hobbyItemIndex = index;
                                         if (count <= 4) {
                                           selection(hobbyIndex, hobbyItemIndex);
                                         } else {
-                                          if (isSelected[hobbyIndex][index]) {
+                                          if (selected[hobbyIndex][index]) {
                                             selection(hobbyIndex, hobbyItemIndex);
                                           } else {
                                             ScaffoldMessenger.of(context).showSnackBar(
@@ -184,21 +183,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                         }
                                       },
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           Container(
                                             height: 50,
                                             width: 50,
-                                            decoration: !isSelected[hobbyIndex][index]
+                                            decoration: !selected[hobbyIndex][index]
                                                 ? BoxDecoration(
                                                     borderRadius: BorderRadius.circular(6),
+                                                    border: Border.all(color: const Color(0xff14152B)),
                                                     color: AppColors.white,
-                                                    border: Border.all(color: const Color(0xff14152B)))
+                                                  )
                                                 : BoxDecoration(
                                                     borderRadius: BorderRadius.circular(6),
+                                                    border: Border.all(color: const Color(0xff063B6D)),
                                                     color: AppColors.grey200,
-                                                    border: Border.all(color: const Color(0xff063B6D))),
+                                                  ),
                                             child: Padding(
                                               padding: const EdgeInsets.all(9.0),
                                               child: SvgPicture.asset(
@@ -240,8 +239,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             bool isValidate = true;
-                            for (int i = 0; i < isSelected.length; i++) {
-                              if (!validateSelection(i)) {
+                            for (int i = 0; i < selected.length; i++) {
+                              if (!validation(i)) {
                                 isValidate = false;
                                 break;
                               }
@@ -249,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             if (isValidate) {
                               for (int i = 0; i < (state.listHobbies?.length ?? 0); i++) {
                                 for (int j = 0; j < (state.listHobbies?[i].hobbyDataList.length ?? 0); j++) {
-                                  if (isSelected[i][j]) {
+                                  if (selected[i][j]) {
                                     selectedList
                                         .add(state.listHobbies?[i].hobbyDataList[j] ?? HobbyData(hobbyName: '', link: ''));
                                   }
@@ -299,14 +298,14 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void selection(int listIndex, int containerIndex) {
+  void selection(int listIndex, int tileIndex) {
     setState(() {
-      isSelected[listIndex][containerIndex] = !isSelected[listIndex][containerIndex];
+      selected[listIndex][tileIndex] = !selected[listIndex][tileIndex];
     });
   }
 
-  bool validateSelection(int listIndex) {
-    int count = isSelected[listIndex].where((element) => element).length;
+  bool validation(int listIndex) {
+    int count = selected[listIndex].where((element) => element).length;
     return count >= 2 && count <= 5;
   }
 }

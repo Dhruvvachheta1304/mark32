@@ -185,7 +185,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 17,
                           ),
                           Padding(
@@ -230,7 +230,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 Padding(

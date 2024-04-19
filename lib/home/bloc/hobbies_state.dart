@@ -1,11 +1,11 @@
 part of 'hobbies_bloc.dart';
 
 @immutable
-abstract class AllHobbiesState {
-  const AllHobbiesState();
+abstract class HobbiesState {
+  const HobbiesState();
 }
 
-class HobbyListingState extends AllHobbiesState {
+class HobbyListingState extends HobbiesState {
   final List<HobbiesModel>? listHobbies;
   final String? errorMessage;
   final Status status;
@@ -29,9 +29,9 @@ class HobbyListingState extends AllHobbiesState {
 
   const HobbyListingState.loading() : this._(status: Status.loading);
 
-  const HobbyListingState.isError({required String? errorMessage})
+  const HobbyListingState.isError({required String? errorMsg})
       : this._(
           status: Status.error,
-          errorMessage: errorMessage,
+          errorMessage: errorMsg,
         );
 }

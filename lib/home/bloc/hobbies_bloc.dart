@@ -43,7 +43,7 @@ import 'package:mark2/home/repository/home_repo.dart';
 part 'hobbies_event.dart';
 part 'hobbies_state.dart';
 
-class AllHobbiesBloc extends Bloc<HobbiesEvent, AllHobbiesState> {
+class AllHobbiesBloc extends Bloc<HobbiesEvent, HobbiesState> {
   AllHobbiesBloc({required IHobbiesRepo hobbiesRepo})
       : _allHobbiesRepo = hobbiesRepo,
         super(const HobbyListingState.initial()) {
@@ -52,7 +52,7 @@ class AllHobbiesBloc extends Bloc<HobbiesEvent, AllHobbiesState> {
 
   final IHobbiesRepo _allHobbiesRepo;
 
-  Future<void> getData(GetHobbiesEvent event, Emitter<AllHobbiesState> emit) async {
+  Future<void> getData(GetHobbiesEvent event, Emitter<HobbiesState> emit) async {
     try {
       emit(const HobbyListingState.loading());
       final response = await _allHobbiesRepo.getHobbies();
@@ -62,7 +62,7 @@ class AllHobbiesBloc extends Bloc<HobbiesEvent, AllHobbiesState> {
         emit(const HobbyListingState.isFailed(errorMessage: 'could you please provide valid message!'));
       }
     } catch (e) {
-      emit(HobbyListingState.isError(errorMessage: e.toString()));
+      emit(HobbyListingState.isError(errorMsg: e.toString()));
     }
   }
 }
