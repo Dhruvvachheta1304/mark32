@@ -21,7 +21,7 @@ class HomeScreen extends StatefulWidget {
           },
         ),
         BlocProvider(
-          create: (BuildContext context) => AllHobbiesBloc(
+          create: (BuildContext context) => HobbiesBloc(
             hobbiesRepo: context.read<GetHobbies>(),
           )..add(GetHobbiesEvent()),
         ),
@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Container(
           color: AppColors.white,
-          child: BlocConsumer<AllHobbiesBloc, HobbiesState>(
+          child: BlocConsumer<HobbiesBloc, HobbiesState>(
             listener: (context, state) {
               if (state is HobbyListingState && state.status == Status.loaded) {
                 selected = List.generate(state.listHobbies?.length ?? 0, (index) => List.generate(20, (index) => false));

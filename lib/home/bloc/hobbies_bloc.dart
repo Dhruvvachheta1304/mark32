@@ -43,8 +43,8 @@ import 'package:mark2/home/repository/home_repo.dart';
 part 'hobbies_event.dart';
 part 'hobbies_state.dart';
 
-class AllHobbiesBloc extends Bloc<HobbiesEvent, HobbiesState> {
-  AllHobbiesBloc({required IHobbiesRepo hobbiesRepo})
+class HobbiesBloc extends Bloc<HobbiesEvent, HobbiesState> {
+  HobbiesBloc({required IHobbiesRepo hobbiesRepo})
       : _allHobbiesRepo = hobbiesRepo,
         super(const HobbyListingState.initial()) {
     on<GetHobbiesEvent>(getData);
