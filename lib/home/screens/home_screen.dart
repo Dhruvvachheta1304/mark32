@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mark2/app/enum.dart';
-import 'package:mark2/home/bloc/hobbies_bloc.dart';
-import 'package:mark2/home/model/list_model.dart';
-import 'package:mark2/home/repository/home_repo.dart';
-import 'package:mark2/home/widget/alert_dialog.dart';
-import 'package:mark2/selection/screens/selection_screen.dart';
-import 'package:mark2/theme/app_colors.dart';
+import 'package:hobbies/app/enum.dart';
+import 'package:hobbies/home/bloc/hobbies_bloc.dart';
+import 'package:hobbies/home/model/list_model.dart';
+import 'package:hobbies/home/repository/home_repo.dart';
+import 'package:hobbies/home/widget/alert_dialog.dart';
+import 'package:hobbies/selection/screens/selection_screen.dart';
+import 'package:hobbies/theme/app_colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

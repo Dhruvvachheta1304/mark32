@@ -1,44 +1,9 @@
-// import 'dart:async';
-//
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:mark2/app/enum.dart';
-// import 'package:mark2/model/list_model.dart';
-// import 'package:mark2/repository/home_repo.dart';
-//
-// part 'hobbies_event.dart';
-//
-// part 'hobbies_state.dart';
-//
-// class HobbiesBloc extends Bloc<HobbiesEvent, HobbiesState> {
-//   HobbiesBloc({required IHobbiesRepo iHobbiesRepo})
-//       : _iHobbiesRepo = iHobbiesRepo,
-//         super(const HobbiesListingState.initial()) {
-//     on<GetHobbiesDataEvent>(getHobbiesData);
-//   }
-//
-//   final IHobbiesRepo _iHobbiesRepo;
-//
-//   Future<void> getHobbiesData(GetHobbiesDataEvent event, Emitter<HobbiesState> emit) async {
-//     try {
-//       emit(const HobbiesListingState.loading());
-//       final res = await _iHobbiesRepo.getData();
-//       if (res?.isNotEmpty ?? true) {
-//         emit(HobbiesListingState.success(listHobbies: res));
-//       } else {
-//         emit(const HobbiesListingState.failed(errorMsg: '.'));
-//       }
-//     } catch (e) {
-//       emit(HobbiesListingState.error(errorMsg: e.toString()));
-//     }
-//   }
-// }
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mark2/app/enum.dart';
-import 'package:mark2/home/model/list_model.dart';
-import 'package:mark2/home/repository/home_repo.dart';
+import 'package:hobbies/app/enum.dart';
+import 'package:hobbies/home/model/list_model.dart';
+import 'package:hobbies/home/repository/home_repo.dart';
 
 part 'hobbies_event.dart';
 part 'hobbies_state.dart';

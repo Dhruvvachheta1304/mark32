@@ -1,5 +1,5 @@
-import 'package:mark2/data/hobbies_data.dart';
-import 'package:mark2/home/model/list_model.dart';
+import 'package:hobbies/data/hobbies_data.dart';
+import 'package:hobbies/home/model/list_model.dart';
 
 abstract class IHobbiesRepo {
   Future<List<HobbiesModel>?> getHobbies();

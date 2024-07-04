@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mark2/home/screens/home_screen.dart';
+import 'package:hobbies/home/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());

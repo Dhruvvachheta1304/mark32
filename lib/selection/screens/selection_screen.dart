@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mark2/home/model/list_model.dart';
-import 'package:mark2/home/widget/custom_glass_button.dart';
-import 'package:mark2/theme/app_colors.dart';
+import 'package:hobbies/home/model/list_model.dart';
+import 'package:hobbies/home/widget/custom_glass_button.dart';
+import 'package:hobbies/theme/app_colors.dart';
 
 class SelectionScreen extends StatefulWidget {
   const SelectionScreen({super.key});
