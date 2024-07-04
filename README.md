@@ -1,6 +1,6 @@
-# mark2
+# mar32
 
-A new Flutter project.
+A project related to **Hobbies** with CRUD operations.
 
 ## Getting Started
 
